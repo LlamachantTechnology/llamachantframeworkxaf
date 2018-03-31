@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="LlamachantFramework">
+  <Localization>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="SummaryPanelHide" Value="Hide Summary Panel" IsNewNode="True" />
+      <LocalizationItem Name="SummaryPanelShow" Value="Show Summary Panel" IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="17.2.7.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="AuditTrailDetails_AuditTrail_ListView" AllowDelete="False" AllowNew="False">
+      <Columns>
+        <ColumnInfo Id="ModifiedOn" Index="0" SortIndex="0" SortOrder="Descending" />
+        <ColumnInfo Id="UserName" Index="1" Width="154" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="OldValue" Index="4" />
+        <ColumnInfo Id="NewValue" Index="5" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

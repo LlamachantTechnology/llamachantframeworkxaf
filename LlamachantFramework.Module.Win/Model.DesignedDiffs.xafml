@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Localization>
+    <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="OpenObjectWithCaption" Value="Open {0}" IsNewNode="True" />
+    </LocalizationGroup>
+  </Localization>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="17.2.6.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="17.2.6.0" IsNewNode="True" />
+  </SchemaModules>
+</Application>

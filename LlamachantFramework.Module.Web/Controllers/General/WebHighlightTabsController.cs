@@ -30,15 +30,32 @@ namespace LlamachantFramework.Module.Web.Controllers.General
             base.OnActivated();
 
             if (HighlightOptions.ShowCountsInTabs)
+            {
                 LayoutManager.ItemCreated += LayoutManager_ItemCreated;
+                View.CurrentObjectChanged += View_CurrentObjectChanged;
+            }
         }
 
         protected override void OnDeactivated()
         {
             if (HighlightOptions.ShowCountsInTabs)
+            {
                 LayoutManager.ItemCreated -= LayoutManager_ItemCreated;
+                View.CurrentObjectChanged -= View_CurrentObjectChanged;
+            }
 
             base.OnDeactivated();
+        }
+
+        private void View_CurrentObjectChanged(object sender, EventArgs e)
+        {
+            if (View.CurrentObject != null)
+            {
+                foreach (ASPxTabControlBase tabcontrol in tabControls)
+                {
+                    CustomizeASPxTabControl(tabcontrol);
+                }
+            }
         }
 
         private void LayoutManager_ItemCreated(object sender, ItemCreatedEventArgs e)

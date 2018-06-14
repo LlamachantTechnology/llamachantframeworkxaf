@@ -2,6 +2,7 @@
 <Application Title="LlamachantFramework">
   <Localization>
     <LocalizationGroup Name="Texts">
+      <LocalizationItem Name="AuditTrailTitle" Value="Audit trail for {0}" IsNewNode="True" />
       <LocalizationItem Name="SummaryPanelHide" Value="Hide Summary Panel" IsNewNode="True" />
       <LocalizationItem Name="SummaryPanelShow" Value="Show Summary Panel" IsNewNode="True" />
     </LocalizationGroup>

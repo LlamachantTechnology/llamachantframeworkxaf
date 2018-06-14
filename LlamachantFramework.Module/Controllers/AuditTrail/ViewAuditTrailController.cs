@@ -61,7 +61,9 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
             IObjectSpace space = Application.CreateObjectSpace();
             if (space is XPObjectSpace)
             {
-                AuditTrailDetails details = new AuditTrailDetails((space as XPObjectSpace).Session, this.View.CurrentObject);
+                object audit = this.View.CurrentObject;
+                AuditTrailDetails details = new AuditTrailDetails((space as XPObjectSpace).Session, audit);
+                details.Name = String.Format(CaptionHelper.GetLocalizedText("Texts", "AuditTrailTitle"), CaptionHelper.GetClassCaption(XafTypesInfo.Instance.FindTypeInfo(audit.GetType()).Type.FullName));
                 e.View = Application.CreateDetailView(space, details);
             }
         }
@@ -91,12 +93,11 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
     {
         public AuditTrailDetails(Session session, object audit)
         {
-            _name = String.Format("Audit trail for {0}", CaptionHelper.GetClassCaption(audit.GetType().FullName));
             AuditTrail = AuditedObjectWeakReference.GetAuditTrail(session, audit);
         }
 
-        private string _name;
-        public string Name { get { return _name; } }
+        [ModelDefault("AllowEdit", "False")]
+        public string Name { get; set; }
         public XPCollection<AuditDataItemPersistent> AuditTrail { get; private set; }
     }
 

@@ -46,6 +46,12 @@ namespace LlamachantFramework.Module.Web.Controllers.General
 
             base.OnDeactivated();
         }
+        
+        protected override void OnViewControlsDestroying()
+        {
+            tabControls.Clear();
+            base.OnViewControlsDestroying();
+        }
 
         private void View_CurrentObjectChanged(object sender, EventArgs e)
         {
@@ -109,6 +115,11 @@ namespace LlamachantFramework.Module.Web.Controllers.General
                             {
                                 page.Text = String.Format("{0} ({1})", this.View.FindItem(propertyname).Caption, (obj as ICollection).Count);
                                 page.TabStyle.Font.Bold = HighlightOptions.BoldTabsWithCounts;
+                            }
+                            else
+                            {
+                                page.Text = String.Format("{0}", this.View.FindItem(propertyname).Caption);
+                                page.TabStyle.Font.Bold = false;
                             }
                         }
                         else if (obj != null)

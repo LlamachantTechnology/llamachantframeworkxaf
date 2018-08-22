@@ -26,7 +26,7 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppViewControllertopic.aspx.
     public partial class ViewAuditTrailController : ViewController, IModelExtender
     {
-        private static bool? AuditTrailEnabled = null;
+        public static bool? AuditTrailEnabled { get; set; }
         public PopupWindowShowAction ViewAuditTrailAction { get { return actionViewAuditTrail; } }
 
         public ViewAuditTrailController()
@@ -39,8 +39,6 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
         {
             base.OnActivated();
             // Perform various tasks depending on the target View.
-            if (!AuditTrailEnabled.HasValue)
-                AuditTrailEnabled = this.Application.Modules.FindModule<AuditTrailModule>() != null;
 
             SetAuditTrailActionVisibility();
 
@@ -105,6 +103,8 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
     {
         [System.ComponentModel.Category("Llamachant Framework")]
         AuditTrailOption CanViewAuditTrail { get; set; }
+        [System.ComponentModel.Category("Llamachant Framework")]
+        AuditTrailOption CanRestoreFromAuditTrail { get; set; }
     }
 
     public enum AuditTrailOption { None = 0, All = 1, UserSpecific = 2 }

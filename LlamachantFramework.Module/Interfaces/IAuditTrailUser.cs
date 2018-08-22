@@ -11,5 +11,6 @@ namespace LlamachantFramework.Module.Interfaces
     public interface IAuditTrailUser
     {
         bool CanViewAuditTrail { get; }
+        bool CanRestoreFromAuditTrail { get; }
     }
 }

@@ -11,7 +11,7 @@
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
   <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="17.2.7.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="18.1.4.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <ListView Id="AuditTrailDetails_AuditTrail_ListView" AllowDelete="False" AllowNew="False">
@@ -22,5 +22,12 @@
         <ColumnInfo Id="NewValue" Index="5" />
       </Columns>
     </ListView>
+    <ListView Id="RestoreDataParameters_DeletedItems_ListView" AllowOpenDetailView="False" AllowToolbarVisibilityToggle="False" ToolbarVisible="False">
+      <Columns>
+        <ColumnInfo Id="Name" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="DeletedOn" SortIndex="0" SortOrder="Descending" />
+      </Columns>
+    </ListView>
+    <ListView Id="RestoredObjectsParameters_ObjectsToRestore_ListView" AllowOpenDetailView="False" AllowToolbarVisibilityToggle="False" ToolbarVisible="False" />
   </Views>
 </Application>

@@ -19,6 +19,8 @@ using LlamachantFramework.Module.Interfaces;
 using LlamachantFramework.Module.ModelGenerators;
 using LlamachantFramework.Module.Controllers.General;
 using LlamachantFramework.Module.Interfaces.Model;
+using LlamachantFramework.Module.Controllers.AuditTrail;
+using DevExpress.ExpressApp.AuditTrail;
 
 namespace LlamachantFramework.Module {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppModuleBasetopic.aspx.
@@ -36,6 +38,12 @@ namespace LlamachantFramework.Module {
             // Manage various aspects of the application UI and behavior at the module level.
 
             application.CustomProcessShortcut += Application_CustomProcessShortcut;
+            application.SetupComplete += Application_SetupComplete;
+        }
+
+        private void Application_SetupComplete(object sender, EventArgs e)
+        {
+            ViewAuditTrailController.AuditTrailEnabled = this.Application.Modules.FindModule<AuditTrailModule>() != null;
         }
 
         private void Application_CustomProcessShortcut(object sender, CustomProcessShortcutEventArgs e)

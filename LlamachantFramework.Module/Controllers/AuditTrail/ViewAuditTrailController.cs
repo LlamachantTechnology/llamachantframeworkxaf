@@ -51,7 +51,8 @@ namespace LlamachantFramework.Module.Controllers.AuditTrail
             IModelAuditTrailOptions options = Application.Model.Options as IModelAuditTrailOptions;
             this.actionViewAuditTrail.Active[this.Name] = AuditTrailEnabled.Value && (options.CanViewAuditTrail == AuditTrailOption.All ||
                 (options.CanViewAuditTrail == AuditTrailOption.UserSpecific && SecuritySystem.CurrentUser is IAuditTrailUser && ((IAuditTrailUser)SecuritySystem.CurrentUser).CanViewAuditTrail));
-            this.actionViewAuditTrail.Active[this.Name] &= this.View.CurrentObject != null && !typeof(AuditDataItemPersistent).IsAssignableFrom(this.View.CurrentObject.GetType());
+
+            this.actionViewAuditTrail.Active[this.Name] &= this.View.CurrentObject != null && !typeof(AuditDataItemPersistent).IsAssignableFrom(this.View.ObjectTypeInfo.Type) && this.View.ObjectTypeInfo.IsPersistent;
         }
 
         private void actionViewAuditTrail_CustomizePopupWindowParams(object sender, CustomizePopupWindowParamsEventArgs e)
